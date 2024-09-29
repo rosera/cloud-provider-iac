@@ -1,6 +1,10 @@
-# Cloud Provider
+# Cloud Provider Infrastructure As Code
 
 ## Google Cloud 
+
+According to Google Cloud ...
+
+"The Free Tier provides limited access to many common Google Cloud products and services free of charge. Unlike the Free Trial, the Free Tier is available to all Google Cloud users. Free Tier resources are provided at intervals, usually monthly. Free Tier resources are not credits; they don't accumulate or roll over from one interval to the next."
 
 
 ### Free Tier
