@@ -5,6 +5,7 @@
 
 ### Free Tier
 
+- [x] [API](https://github.com/rosera/cloud-provider-iac/blob/main/api/terraform/README.md)
 - [x] [Cloud Storage](https://github.com/rosera/cloud-provider-iac/blob/main/storage/terraform/README.md)
 - [x] [Google Compute Engine](https://github.com/rosera/cloud-provider-iac/blob/main/compute/terraform/README.md)
 - [x] [Firestore](https://github.com/rosera/cloud-provider-iac/blob/main/firestore/terraform/README.md)
