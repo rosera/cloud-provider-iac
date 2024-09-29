@@ -5,23 +5,23 @@
 
 ### Free Tier
 
-- [x] Google Compute Engine
-- [x] Cloud Storage
-- [x] BigQuery
-- [x] Google Kubernetes Engine
-- [x] Cloud Run
-- [x] Cloud Build
-- [x] Operations (formerly Stackdriver)
-- [x] Firestore
-- [x] Pub/Sub
-- [x] Cloud Run functions
-- [x] Vision AI
-- [x] Speech-to-Text
-- [x] Natural Language API
-- [x] AutoML Translation
-- [x] Video Intelligence API
-- [x] Workflows
-- [x] Cloud Source Repositories
-- [x] Google Cloud Marketplace
-- [x] Secret Manager
-- [x] Cloud Shell
+- [x] [Cloud Storage](https://github.com/rosera/cloud-provider-iac/blob/main/storage/terraform/README.md)
+- [x] [Google Compute Engine](https://github.com/rosera/cloud-provider-iac/blob/main/compute/terraform/README.md)
+- [x] [Firestore](https://github.com/rosera/cloud-provider-iac/blob/main/firestore/terraform/README.md)
+- [x] [Cloud Run functions](https://github.com/rosera/cloud-provider-iac/blob/main/cloud-functions/terraform/README.md)
+- [ ] BigQuery
+- [ ] Google Kubernetes Engine
+- [ ] Cloud Run
+- [ ] Cloud Build
+- [ ] Operations (formerly Stackdriver)
+- [ ] Pub/Sub
+- [ ] Vision AI
+- [ ] Speech-to-Text
+- [ ] Natural Language API
+- [ ] AutoML Translation
+- [ ] Video Intelligence API
+- [ ] Workflows
+- [ ] Cloud Source Repositories
+- [ ] Google Cloud Marketplace
+- [ ] Secret Manager
+- [ ] Cloud Shell
