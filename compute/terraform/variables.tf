@@ -41,6 +41,6 @@ variable "gce_machine_zone" {
 variable "gce_public_image" {
   type        = string
   description = "Google Cloud Engine compute image."
-  # default = "debian-cloud/debian-11-buster" 
-  default = "ubuntu-os-cloud/ubuntu-2204-lts"
+  default = "debian-cloud/debian-11-buster" 
+  # default = "ubuntu-os-cloud/ubuntu-2204-lts"
 }
