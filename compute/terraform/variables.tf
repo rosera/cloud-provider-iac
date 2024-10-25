@@ -7,6 +7,7 @@ variable "gcp_project_id" {
 # Default value passed in
 variable "gcp_region" {
   type        = string
+  # Free Tier: Oregon: us-west1, Iowa: us-central1, South Carolina: us-east1
   description = "Region to create resources in."
   default     = "us-central1"
 }
@@ -25,7 +26,7 @@ variable "gce_instance_name" {
 variable "gce_machine_type" {
   type        = string
   description = "Google Cloud Engine machine type."
-  default     = "e2-small"
+  default     = "e2-micro"
 }
 
 # Default value passed in
