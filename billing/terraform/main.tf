@@ -57,6 +57,6 @@ resource "google_monitoring_notification_channel" "notification_channel_pubsub" 
   type         = "pubsub"
 
   labels = {
-    topic = var.gcp_billing_topic
+    topic = var.gcp_billing_pubsub
   }
 }
