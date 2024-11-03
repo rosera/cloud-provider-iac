@@ -55,3 +55,29 @@ variable "gcp_billing_pubsub" {
   # General: https://cloud.google.com/storage/docs/locations
   default = "billing-topic"
 }
+
+## Google API enable properties
+## -------------------------------------------------------
+
+# Default value passed in
+variable "api_services_list" {
+  type        = list(string)
+  description = "List of Googleapis to enable."
+  default = [
+    "cloudbilling.googleapis.com",
+  ]
+}
+
+# Default value passed in
+variable "api_disable_dependent" {
+  type        = string
+  description = "Api dependencies state is disabled"
+  default     = false
+}
+
+# Default value passed in
+variable "api_create_duration" {
+  type        = string
+  description = "Api wait duration"
+  default     = "120s"
+}
