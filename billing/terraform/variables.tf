@@ -30,7 +30,7 @@ variable "gcp_billing_budget" {
 
 # Default value passed in
 # Default value passed in
-variable "gcp_biling_units" {
+variable "gcp_billing_units" {
   type        = string
   description = "Billing notification email."
   # Free Tier: us-east1, us-west1, us-central1
@@ -39,7 +39,7 @@ variable "gcp_biling_units" {
 }
 
 # Default value passed in
-variable "gcp_biling_email" {
+variable "gcp_billing_email" {
   type        = string
   description = "Billing notification email."
   # Free Tier: us-east1, us-west1, us-central1
