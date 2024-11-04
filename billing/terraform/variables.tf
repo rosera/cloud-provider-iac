@@ -56,6 +56,7 @@ variable "api_services_list" {
   description = "List of Googleapis to enable."
   default = [
     "cloudbilling.googleapis.com",
+    "billingbudgets.googleapis.com",
   ]
 }
 
