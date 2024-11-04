@@ -23,37 +23,28 @@ variable "gcp_billing_account" {
 variable "gcp_billing_budget" {
   type        = string
   description = "Example billing budget."
-  # Free Tier: us-east1, us-west1, us-central1
-  # General: https://cloud.google.com/storage/docs/locations
-  default = "Example billing budget."
+  default     = "Example billing budget."
 }
 
-# Default value passed in
 # Default value passed in
 variable "gcp_billing_units" {
   type        = string
   description = "Billing notification email."
-  # Free Tier: us-east1, us-west1, us-central1
-  # General: https://cloud.google.com/storage/docs/locations
-  default = "tester@gmail.com"
+  default     = "1"
 }
 
 # Default value passed in
 variable "gcp_billing_email" {
   type        = string
   description = "Billing notification email."
-  # Free Tier: us-east1, us-west1, us-central1
-  # General: https://cloud.google.com/storage/docs/locations
-  default = "tester@gmail.com"
+  default     = "tester@gmail.com"
 }
 
 # Default value passed in
 variable "gcp_billing_pubsub" {
   type        = string
   description = "Billing notification pubsub."
-  # Free Tier: us-east1, us-west1, us-central1
-  # General: https://cloud.google.com/storage/docs/locations
-  default = "billing-topic"
+  default     = "billing-topic"
 }
 
 ## Google API enable properties
