@@ -2,7 +2,7 @@
 variable "gcp_project_id" {
   type        = string
   description = "The GCP project ID to create resources in."
-  default = "kubernetes-demo-440818"
+  default = "qwiklabs-gcp-01-f6e892e9affe"
 }
 
 # Default value passed in
