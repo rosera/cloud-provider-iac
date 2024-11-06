@@ -2,7 +2,6 @@
 variable "gcp_project_id" {
   type        = string
   description = "The GCP project ID to create resources in."
-  default = "roselabs-poc"
 }
 
 # Default value passed in
@@ -14,24 +13,35 @@ variable "gcp_region" {
   default = "us-central1"
 }
 
+## Billing API properties 
+## -------------------------------------------------------
+
 variable "gcp_billing_account" {
   type        = string
   description = "Billing account."
   # default = "Example billing budget."
-  default = "008521-1D13B0-18A5F8"
 }
 
 # Default value passed in
-variable "gcp_billing_budget" {
+variable "gcp_billing_budget_name" {
   type        = string
   description = "Example billing budget."
-  default     = "Example billing budget."
+  # Free Tier: us-east1, us-west1, us-central1
+  # General: https://cloud.google.com/storage/docs/locations
+  default = "Example billing budget."
+}
+
+# Default value passed in
+variable "gcp_billing_currency_code" {
+  type        = string
+  description = "Billing currency code."
+  default = "USD"
 }
 
 # Default value passed in
 variable "gcp_billing_units" {
-  type        = string
-  description = "Billing notification email."
+  type        = string 
+  description = "Billing account units."
   default     = "1"
 }
 
@@ -39,17 +49,17 @@ variable "gcp_billing_units" {
 variable "gcp_billing_email" {
   type        = string
   description = "Billing notification email."
-  default     = "tester@gmail.com"
+  default = "tester@gmail.com"
 }
 
 # Default value passed in
 variable "gcp_billing_pubsub" {
   type        = string
   description = "Billing notification pubsub."
-  default     = "api-topic"
+  default = "api-topic"
 }
 
-## Google API enable properties
+## Google API enable properties 
 ## -------------------------------------------------------
 
 # Default value passed in
@@ -73,5 +83,6 @@ variable "api_disable_dependent" {
 variable "api_create_duration" {
   type        = string
   description = "Api wait duration"
-  default     = "120s"
+  default     = "120s" 
 }
+

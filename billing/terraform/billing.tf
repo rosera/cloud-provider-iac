@@ -24,6 +24,7 @@ resource "google_billing_budget" "budget" {
     specified_amount {
       # currency_code = "USD"
       # units         = "100000"
+      currency_code = "GBP"
       units = var.gcp_billing_units
     }
   }
@@ -39,10 +40,10 @@ resource "google_billing_budget" "budget" {
 
   all_updates_rule {
     monitoring_notification_channels = [
-      google_monitoring_notification_channel.notification_channel_email.id,
+      # google_monitoring_notification_channel.notification_channel_email.id,
       google_monitoring_notification_channel.notification_channel_pubsub.id,
     ]
-    disable_default_iam_recipients = true
+    disable_default_iam_recipients = false 
   }
 
   # Make sure API is enabled
@@ -51,20 +52,44 @@ resource "google_billing_budget" "budget" {
 
 
 resource "google_monitoring_notification_channel" "notification_channel_email" {
-  display_name = "Email Notification Channel"
   type         = "email"
+  display_name = "Email Notification Channel"
 
   labels = {
-    email_address = var.gcp_billing_email
+   email_address = var.gcp_billing_email
   }
 }
 
+
 resource "google_monitoring_notification_channel" "notification_channel_pubsub" {
-  display_name = "Pubsub Notification Channel"
   type         = "pubsub"
+  project      = var.gcp_project_id
+  display_name = "pubsubnotification"
+  enabled      = true
+  description  = "Test pubsub notification" 
+  force_delete = false
 
   labels = {
     # REGEX: "projects/[^/]+/topics/[^/]+" 
-    topic = "projects/${var.gcp_project_id}/topics/${var.gcp_billing_pubsub}"
+    # projects/roselabs-poc/topics/api-topic
+    # topic = "projects/${var.gcp_project_id}/topics/${var.gcp_billing_pubsub}"
+    
+    topic = google_pubsub_topic.budget_alerts.id
+    description = "Test Budget PubSub"
   }
+  
+  # verification_status = "VERIFIED"
 }
+
+resource "google_pubsub_topic_iam_member" "monitoring_publisher" {
+  topic    = google_pubsub_topic.budget_alerts.name
+  role     = "roles/pubsub.publisher"
+  member   = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-monitoring-notification.iam.gserviceaccount.com"
+}
+
+
+resource "google_pubsub_topic" "budget_alerts" {
+  name = "budget-alerts-topic"
+}
+
+
