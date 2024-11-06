@@ -1,5 +1,14 @@
 # Minikube
 
+Creates a Small Minikube Cluster.
+Adds a kubernetes developer account: `k8s-dev`.
+
+To switch to the developer account:
+
+```bash
+sudo su - k8s-dev
+``
+
 
 ## API
 
