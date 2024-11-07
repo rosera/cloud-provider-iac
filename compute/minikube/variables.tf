@@ -2,14 +2,14 @@
 variable "gcp_project_id" {
   type        = string
   description = "The GCP project ID to create resources in."
-  default = "qwiklabs-gcp-01-f6e892e9affe"
+  # default = "PROJECT_ID"
 }
 
 # Default value passed in
 variable "gcp_region" {
   type        = string
   description = "Region to create resources in."
-  default     = "us-central1"
+  # default     = "us-central1"
 }
 
 ## Google Compute Engine properties
