@@ -26,7 +26,7 @@ resource "google_compute_instance" "free_tier_vm" {
       # STARTUP-START
       # Update package lists and install required packages
       apt-get update -y
-      apt-get install -y curl wget apt-transport-https ca-certificates gnupg lsb-release
+      apt-get install -y curl kubectl wget apt-transport-https ca-certificates gnupg lsb-release
 
       # Add Docker's official GPG key:
       apt-get update
@@ -37,6 +37,7 @@ resource "google_compute_instance" "free_tier_vm" {
 
       # Add the repository to Apt sources:
       echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
       apt-get update
 
       # Docker installation
@@ -46,11 +47,15 @@ resource "google_compute_instance" "free_tier_vm" {
       curl -fsSL https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -o /usr/local/bin/minikube
       chmod +x /usr/local/bin/minikube   
 
+      # Env Var
+      export USER="k8s-dev"
+
       # Create a user
-      useradd k8s-dev -m -p Password01 -s /bin/bash -c 'Kubernetes Account'
+      useradd $USER -m -p Password01 -s /bin/bash -c 'Kubernetes Account'
 
       # Add user to docker group
-      # usermod -aG docker k8s-dev  
+      groupadd docker
+      usermod -aG docker $USER && newgrp docker
 
       # Start Minikube
       # minikube start
