@@ -18,7 +18,7 @@ variable "gcp_region" {
 variable "firestore_database_name" {
   type        = string
   description = "Firestore database name."
-  default     = "(default)"
+  default     = "test"
 }
 
 # Default value passed in
