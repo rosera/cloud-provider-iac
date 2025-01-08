@@ -9,7 +9,7 @@ variable "gcp_region" {
   type        = string
   # Free Tier: Oregon: us-west1, Iowa: us-central1, South Carolina: us-east1
   description = "Region to create resources in."
-  default     = "us-central1"
+  # default     = "us-central1"
 }
 
 ## Google Compute Engine properties
@@ -33,7 +33,7 @@ variable "gce_machine_type" {
 variable "gce_machine_zone" {
   type        = string
   description = "Google Cloud Engine machine type."
-  default     = "us-central1-a"
+  # default     = "us-central1-a"
 }
 
 # Default value passed in
@@ -41,6 +41,6 @@ variable "gce_machine_zone" {
 variable "gce_public_image" {
   type        = string
   description = "Google Cloud Engine compute image."
-  default = "debian-cloud/debian-11-buster" 
+  default = "debian-cloud/debian-11" 
   # default = "ubuntu-os-cloud/ubuntu-2204-lts"
 }

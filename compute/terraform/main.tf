@@ -18,4 +18,14 @@ resource "google_compute_instance" "free_tier_vm" {
       # nat_ip = "EXTERNAL"
     }
   }
+
+  # Run Script
+  metadata = {
+    startup-script = <<EOF
+      #!/bin/bash
+      # STARTUP-START
+      # STARTUP-END
+    EOF
+  }
+
 }
