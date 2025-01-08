@@ -7,9 +7,7 @@ variable "gcp_project_id" {
 # Default value passed in
 variable "gcp_region" {
   type        = string
-  # Free Tier: Oregon: us-west1, Iowa: us-central1, South Carolina: us-east1
   description = "Region to create resources in."
-  # default     = "us-central1"
 }
 
 ## Google Compute Engine properties
@@ -19,7 +17,7 @@ variable "gcp_region" {
 variable "gce_instance_name" {
   type        = string
   description = "Google Cloud Engine instance name."
-  default     = "vm-ft"
+  default     = "dev-vm"
 }
 
 # Default value passed in
@@ -27,13 +25,13 @@ variable "gce_machine_type" {
   type        = string
   description = "Google Cloud Engine machine type."
   default     = "e2-micro"
+  # default     = "e2-small"
 }
 
 # Default value passed in
 variable "gce_machine_zone" {
   type        = string
   description = "Google Cloud Engine machine type."
-  # default     = "us-central1-a"
 }
 
 # Default value passed in
@@ -43,4 +41,16 @@ variable "gce_public_image" {
   description = "Google Cloud Engine compute image."
   default = "debian-cloud/debian-11" 
   # default = "ubuntu-os-cloud/ubuntu-2204-lts"
+}
+
+variable "gce_project" {
+  type        = string
+  description = "GCE Project."
+  default = "debian-cloud"
+}
+
+variable "gce_image" {
+  type        = string
+  description = "Google Cloud Engine compute image."
+  default = "debian-11"
 }
