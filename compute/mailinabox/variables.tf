@@ -12,6 +12,13 @@ variable "gcp_region" {
   # default     = "us-central1"
 }
 
+# Default value passed in
+variable "gce_machine_zone" {
+  type        = string
+  description = "Google Cloud Engine machine type."
+  # default     = "us-central1-a"
+}
+
 ## Google Compute Engine properties
 ## -------------------------------------------------------
 
@@ -19,41 +26,37 @@ variable "gcp_region" {
 variable "gce_instance_name" {
   type        = string
   description = "Google Cloud Engine instance name."
-  default     = "vm-minikube"
+  default     = "vm-miab"
 }
 
 # Default value passed in
 variable "gce_machine_type" {
   type        = string
   description = "Google Cloud Engine machine type."
-  # default     = "e2-micro"
-  default     = "e2-small"
+  default     = "e2-micro"
+  # default     = "e2-small"
 }
 
-# Default value passed in
-variable "gce_machine_zone" {
-  type        = string
-  description = "Google Cloud Engine machine type."
-  default     = "us-central1-a"
-}
 
 # Default value passed in
 # Ref: https://cloud.google.com/compute/docs/images/os-details
 variable "gce_public_image" {
   type        = string
   description = "Google Cloud Engine compute image."
-  default = "debian-cloud/debian-11-buster" 
-  # default = "ubuntu-os-cloud/ubuntu-2204-lts"
+  # default = "debian-cloud/debian-11-buster" 
+  default = "ubuntu-os-cloud/ubuntu-2204-lts"
 }
 
 variable "gce_project" {
   type        = string
   description = "GCE Project."
-  default = "debian-cloud"
+  # default = "debian-cloud"
+  default = "ubuntu-os-cloud"
 }
 
-variable "gce_image" {
+variable "gce_family" {
   type        = string
   description = "Google Cloud Engine compute image."
-  default = "debian-11"
+  # default = "debian-11"
+  default = "ubuntu-2204-lts"
 }
