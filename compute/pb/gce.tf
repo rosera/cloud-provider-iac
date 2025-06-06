@@ -1,5 +1,5 @@
 data "google_compute_image" "os" {
-  project = var.gce_project
+  project = var.gce_project_id
   family  = var.gce_family_image
 }
 
@@ -20,10 +20,12 @@ resource "google_compute_instance" "free_tier_vm" {
 
   network_interface {
     # network    = var.vpc_network_name 
-    subnetwork = var.vpc_subnet_name
+    # network = google_compute_network.custom_network.self_link
+    subnetwork = google_compute_subnetwork.custom_subnet.self_link
+ 
     access_config {
       # Allow external access to the VM
-      nat_ip = "EXTERNAL"
+      # nat_ip = "EXTERNAL"
     }
   }
 
