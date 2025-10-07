@@ -30,6 +30,18 @@ resource "google_billing_budget" "budget" {
   }
 
   threshold_rules {
+    threshold_percent = 0.25
+  }
+
+  threshold_rules {
+    threshold_percent = 0.5
+  }
+
+  threshold_rules {
+    threshold_percent = 0.75
+  }
+
+  threshold_rules {
     threshold_percent = 1.0
   }
 
@@ -40,8 +52,8 @@ resource "google_billing_budget" "budget" {
 
   all_updates_rule {
     monitoring_notification_channels = [
-      # google_monitoring_notification_channel.notification_channel_email.id,
-      google_monitoring_notification_channel.notification_channel_pubsub.id,
+      google_monitoring_notification_channel.notification_channel_email.id,
+      # google_monitoring_notification_channel.notification_channel_pubsub.id,
     ]
     disable_default_iam_recipients = false 
   }
@@ -49,47 +61,3 @@ resource "google_billing_budget" "budget" {
   # Make sure API is enabled
   depends_on = [time_sleep.wait_api_delay]
 }
-
-
-resource "google_monitoring_notification_channel" "notification_channel_email" {
-  type         = "email"
-  display_name = "Email Notification Channel"
-
-  labels = {
-   email_address = var.gcp_billing_email
-  }
-}
-
-
-resource "google_monitoring_notification_channel" "notification_channel_pubsub" {
-  type         = "pubsub"
-  project      = var.gcp_project_id
-  display_name = "pubsubnotification"
-  enabled      = true
-  description  = "Test pubsub notification" 
-  force_delete = false
-
-  labels = {
-    # REGEX: "projects/[^/]+/topics/[^/]+" 
-    # projects/roselabs-poc/topics/api-topic
-    # topic = "projects/${var.gcp_project_id}/topics/${var.gcp_billing_pubsub}"
-    
-    topic = google_pubsub_topic.budget_alerts.id
-    description = "Test Budget PubSub"
-  }
-  
-  # verification_status = "VERIFIED"
-}
-
-resource "google_pubsub_topic_iam_member" "monitoring_publisher" {
-  topic    = google_pubsub_topic.budget_alerts.name
-  role     = "roles/pubsub.publisher"
-  member   = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-monitoring-notification.iam.gserviceaccount.com"
-}
-
-
-resource "google_pubsub_topic" "budget_alerts" {
-  name = "budget-alerts-topic"
-}
-
-

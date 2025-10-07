@@ -46,7 +46,7 @@ variable "gcp_billing_email" {
 variable "gcp_billing_pubsub" {
   type        = string
   description = "Billing notification pubsub."
-  default     = "api-topic"
+  default     = "budget-alerts-topic"
 }
 
 ## Google API enable properties
