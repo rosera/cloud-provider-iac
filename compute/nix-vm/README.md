@@ -34,3 +34,38 @@ terraform plan --out tf.state
 ```bash
 terraform apply tf.state
 ```
+
+## VM Access
+
+1. SSH to VM
+2. Swith to Nix user
+  ```
+  sudo su - nix-dev
+  ```
+3. Create `shell.nix` e.g.
+   ```
+   with import <nixpkgs> {};
+
+   pkgs.mkShell {
+     name = "python-dev";
+
+     nativeBuildInputs = with pkgs; [
+      python313
+     ];
+
+     LANGUAGE = "Python";
+     VERSION  = "python --version";
+
+     shellHook = ''
+      # Optional: Script environment start up 
+      echo "Welcome to $LANGUAGE Development Environment"
+      $VERSION
+      '';
+   }
+   ```
+   
+5. Run nix environment
+   ```
+   nix-shell
+   ```
+6. Run experiment in the Nix environment.
