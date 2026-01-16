@@ -7,7 +7,7 @@ To switch to the developer account:
 
 ```bash
 sudo su - nix-dev
-``
+```
 
 
 ## API
@@ -39,11 +39,11 @@ terraform apply tf.state
 
 1. SSH to VM
 2. Swith to Nix user
-  ```
+  ```bash
   sudo su - nix-dev
   ```
 3. Create `shell.nix` e.g.
-   ```
+   ```nix
    with import <nixpkgs> {};
 
    pkgs.mkShell {
@@ -65,7 +65,7 @@ terraform apply tf.state
    ```
    
 5. Run nix environment
-   ```
+   ```bash
    nix-shell
    ```
 6. Run experiment in the Nix environment.
