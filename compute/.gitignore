@@ -1,1 +1,12 @@
+# Ignore all Terraform state files anywhere in the directory tree
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Ignore all Terraform plan files anywhere in the directory tree
+*.tfplan
 *.plan
+
+# Optional but highly recommended: Ignore the local terraform directory 
+# (contains providers, modules, and internal cache)
+.terraform/
