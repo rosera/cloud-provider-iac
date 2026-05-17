@@ -69,3 +69,10 @@ terraform apply tf.state
    nix-shell
    ```
 6. Run experiment in the Nix environment.
+
+## Output 
+
+1. Show the password
+   ```bash
+   terraform output -raw generated_vm_password
+   ```

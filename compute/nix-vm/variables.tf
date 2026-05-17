@@ -24,8 +24,8 @@ variable "gce_instance_name" {
 variable "gce_machine_type" {
   type        = string
   description = "Google Cloud Engine machine type."
-  default     = "e2-micro"
   # default     = "e2-small"
+  default     = "e2-micro"
 }
 
 # Default value passed in
@@ -52,5 +52,17 @@ variable "gce_project" {
 variable "gce_image" {
   type        = string
   description = "Google Cloud Engine compute image."
-  default = "debian-11"
+  default = "debian-12"
+}
+
+# variable "vm_user_password" {
+#   type        = string
+#   description = "The password for the created VM user. Note: GCP startup scripts expect a pre-hashed password for 'useradd -p'."
+#   sensitive   = true # Hides the password from console outputs
+# }
+
+variable "nix_packages" {
+  type        = list(string)
+  description = "A list of Nix packages to install (e.g., ['nixpkgs.nodejs_22', 'nixpkgs.firebase-tools'])"
+  default     = ["nixpkgs.nodejs_22", "nixpkgs.firebase-tools", "nixpkgs.cacert"]
 }

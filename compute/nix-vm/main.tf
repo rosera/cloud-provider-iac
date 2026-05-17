@@ -1,3 +1,10 @@
+# Generate a secure random password
+resource "random_password" "user_password" {
+  length           = 16
+  special          = true
+  override_special = "!_-" # Avoid characters that might break bash scripts
+}
+
 # Create the Free Tier compute instance
 resource "google_compute_instance" "free_tier_vm" {
   name         = var.gce_instance_name
@@ -25,26 +32,27 @@ resource "google_compute_instance" "free_tier_vm" {
     startup-script = <<EOF
       #!/bin/bash
       # STARTUP-START
-      # Update package lists and install required packages
-      # Env Var
+      
       export USER="nix-dev"
       export HOME="/home/$USER"
 
-      # Create a user
-      useradd $USER -m -p Password01 -s /bin/bash -c "$USER Developer Account"
+      # Create a user using the dynamically generated and encrypted bcrypt hash
+      useradd $USER -m -p "${bcrypt(random_password.user_password.result)}" -s /bin/bash -c "$USER Developer Account"
 
-      # Install Nix package manager - Ensure $USER + $HOME env var are defined
+      # Install Nix package manager 
       sh <(curl -L https://nixos.org/nix/install) --daemon --yes
 
-      # Install required application packages
-      /nix/var/nix/profiles/default/bin/nix-env -iA nixpkgs.nodejs_22 nixpkgs.firebase-tools nixpkgs.cacert
-      # nix-env -iA nixpkgs.nodejs_22 nixpkgs.firebase-tools nixpkgs.cacert
+      # Install dynamically specified application packages
+      /nix/var/nix/profiles/default/bin/nix-env -iA ${join(" ", var.nix_packages)}
     EOF
   }
 
 }
 
 data "google_compute_image" "debian" {
-  project = "debian-cloud"
-  family  = "debian-11"
+  project = var.gce_project
+  family  = var.gce_image
+
+  # project = "debian-cloud"
+  # family  = "debian-11"
 }
